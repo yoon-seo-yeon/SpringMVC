@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,13 +21,17 @@ public class TestController {
 		return "multi_form";
 	}
 	
-	@PostMapping("/mul_form")
-	public String mul_result(@RequestParam String num) {
+	@PostMapping("/multi_form")
+	public String multi_form(@RequestParam("dan") int dan, Model model) {
+//		String get_num = num;
+		String result="";
 		for(int i = 1; i <= 9; i++) {
-			System.out.println();
+			result += dan + "*" + i + "=" + i*dan + "<br/>";
 		}
 		
-		return "result";
+		model.addAttribute("result", result);
+		
+		return "multi_result";
 	}
 	
 	//성적 구하기
@@ -36,12 +41,26 @@ public class TestController {
 	}
 	
 	@PostMapping("/score_form")
-	public String test3(Score score) {
+	public String test3(Score score, Model model) {
+		String name = score.getName();
 		int ko = score.getKo();
 		int en = score.getEn();
 		int ma = score.getMa();
 		int sp = score.getSp();
+		int total = score.total();
+		double avg = score.avg();
 		
+		//서버로 출력
+		model.addAttribute("name", name);
+		model.addAttribute("ko", ko);
+		model.addAttribute("en", en);
+		model.addAttribute("ma", ma);
+		model.addAttribute("sp", sp);
+		model.addAttribute("total", total);
+		model.addAttribute("avg", avg);
+		
+		/*
+		//콘솔로 출력
 		System.out.println("이름 : " + score.getName());
 		System.out.println("국어 : " + score.getKo());
 		System.out.println("영어 : " + score.getEn());
@@ -49,7 +68,8 @@ public class TestController {
 		System.out.println("스프링 : " + score.getSp());
 		System.out.println("총점 : " + score.total());
 		System.out.println("평균 : " + score.avg());
+		*/
 		
-		return "result";
+		return "score_result";
 	}
 }

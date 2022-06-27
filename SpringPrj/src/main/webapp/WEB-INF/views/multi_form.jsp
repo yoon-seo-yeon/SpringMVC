@@ -1,15 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-<form method="post" action="mul_form">
-ดÜ ภิทย : <input type = "text" name = "dan"/></br/>
-<button type = "submit">มฆรโ</button>
+<form method="post" action="multi_form">
+<h1>์ฑ์ ์ ์…๋ ฅํ•์ธ์”!</h1>
+๋จ ์…๋ ฅ : <input type = "text" name = "dan"/></br/>
+<button type = "submit">์ ์ถ</button>
 </form>
 </body>
 </html>

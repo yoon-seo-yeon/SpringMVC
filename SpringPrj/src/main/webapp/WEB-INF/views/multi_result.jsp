@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>Success!</h1>
+<h1>Multi Result!!</h1>
+<h2>${requestScope.result }</h2>
 </body>
 </html>
