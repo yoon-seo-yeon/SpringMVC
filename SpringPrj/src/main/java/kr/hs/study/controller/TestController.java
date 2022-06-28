@@ -15,7 +15,7 @@ import kr.hs.study.beans.Score;
 
 @Controller
 public class TestController {
-	//±¸±¸´Ü
+	//êµ¬êµ¬ë‹¨
 	@GetMapping("/multipli")
 	public String multipli() {
 		return "multi_form";
@@ -34,14 +34,14 @@ public class TestController {
 		return "multi_result";
 	}
 	
-	//¼ºÀû ±¸ÇÏ±â
+	//ì„±ì  êµ¬í•˜ê¸°
 	@GetMapping("/score")
 	public String score_form() {
 		return "score_form";
 	}
 	
 	@PostMapping("/score_form")
-	public String test3(Score score, Model model) {
+	public String score_form(Score score, Model model) {
 		String name = score.getName();
 		int ko = score.getKo();
 		int en = score.getEn();
@@ -50,7 +50,7 @@ public class TestController {
 		int total = score.total();
 		double avg = score.avg();
 		
-		//¼­¹ö·Î Ãâ·Â
+		//ì„œë²„ë¡œ ì¶œë ¥
 		model.addAttribute("name", name);
 		model.addAttribute("ko", ko);
 		model.addAttribute("en", en);
@@ -60,16 +60,35 @@ public class TestController {
 		model.addAttribute("avg", avg);
 		
 		/*
-		//ÄÜ¼Ö·Î Ãâ·Â
-		System.out.println("ÀÌ¸§ : " + score.getName());
-		System.out.println("±¹¾î : " + score.getKo());
-		System.out.println("¿µ¾î : " + score.getEn());
-		System.out.println("¼öÇĞ : " + score.getMa());
-		System.out.println("½ºÇÁ¸µ : " + score.getSp());
-		System.out.println("ÃÑÁ¡ : " + score.total());
-		System.out.println("Æò±Õ : " + score.avg());
+		//ì½˜ì†”ë¡œ ì¶œë ¥
+		System.out.println("ï¿½Ì¸ï¿½ : " + score.getName());
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ : " + score.getKo());
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ : " + score.getEn());
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ : " + score.getMa());
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ : " + score.getSp());
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ : " + score.total());
+		System.out.println("ï¿½ï¿½ï¿½ : " + score.avg());
 		*/
 		
 		return "score_result";
+	}
+	
+	//ë¡œê·¸ì¸
+	@GetMapping("/login")
+	public String login_form() {
+		return "/login/login_form";
+	}
+	
+	@PostMapping("/login_form")
+	public String login_form(@RequestParam("userId") String userId, @RequestParam("userPass") String userPass, Model model) {
+		if(userId.equals("kim") && userPass.equals("1111")) {
+			model.addAttribute("userId", userId);
+			model.addAttribute("userPass", userPass);
+			
+			return "/login/login_result";
+		}
+		else {
+			return "redirect:/login_form";
+		}
 	}
 }

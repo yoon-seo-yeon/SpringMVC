@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%@ include file = "include/menu.jsp" %>
+<a href="multipli">구구단</a> | <a href="score">성적구하기</a> | 
+<a href="login">로그인</a>
 </body>
 </html>
