@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import kr.hs.study.beans.Join;
 import kr.hs.study.beans.Score;
 
 @Controller
@@ -22,8 +23,7 @@ public class TestController {
 	}
 	
 	@PostMapping("/multi_form")
-	public String multi_form(@RequestParam("dan") int dan, Model model) {
-//		String get_num = num;
+	public String multi_result(@RequestParam("dan") int dan, Model model) {
 		String result="";
 		for(int i = 1; i <= 9; i++) {
 			result += dan + "*" + i + "=" + i*dan + "<br/>";
@@ -41,7 +41,7 @@ public class TestController {
 	}
 	
 	@PostMapping("/score_form")
-	public String score_form(Score score, Model model) {
+	public String score_result(Score score, Model model) {
 		String name = score.getName();
 		int ko = score.getKo();
 		int en = score.getEn();
@@ -80,7 +80,7 @@ public class TestController {
 	}
 	
 	@PostMapping("/login_form")
-	public String login_form(@RequestParam("userId") String userId, @RequestParam("userPass") String userPass, Model model) {
+	public String login_result(@RequestParam("userId") String userId, @RequestParam("userPass") String userPass, Model model) {
 		if(userId.equals("kim") && userPass.equals("1111")) {
 			model.addAttribute("userId", userId);
 			model.addAttribute("userPass", userPass);
@@ -90,5 +90,30 @@ public class TestController {
 		else {
 			return "redirect:/login_form";
 		}
+	}
+	
+	//회원가입
+	@GetMapping("/join")
+	public String join_form() {
+//		return "join/join_form";
+		return "join_form";
+	}
+	
+	@PostMapping("/join_form")
+	public String join_result(Join join, Model model) {
+		String userName = join.getUserName();
+		String userId = join.getUserId();
+		String userPass = join.getUserPass();
+		String userBirth = join.getUserBirth();
+		String userPhone = join.getUserPhone();
+		
+		model.addAttribute("userName", userName);
+		model.addAttribute("userId", userId);
+		model.addAttribute("userPass", userPass);
+		model.addAttribute("userBirth", userBirth);
+		model.addAttribute("userPhone", userPhone);
+		
+//		return "/join/join_result";
+		return "join_result";
 	}
 }
